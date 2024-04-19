@@ -8,10 +8,29 @@ This project is an exploration of the civilian fatalities [dataset](https://acle
 
 The ultimate goal with this project is to analyze how hotspots of violence against civilians have shifted on the continent over time. 
 
-To begin wtih we'll do some exploration of the overall data, see CivilianAnalysis.ipynb.
+To begin wtih we'll just do some exploration of the overall data in python, using geopandas, see CivilianAnalysis.ipynb.
 
 We start by adding a "start_year" field, taken from this handy [chart](https://acleddata.com/acleddatanew/wp-content/uploads/dlm_uploads/2019/01/ACLED_Country-and-Time-Period-coverage_updatedFeb2022.pdf
-), in order to calculate the **average number of civilian fatalities per country per year**. Here are the top 30:
+), in order to calculate the **average number of civilian fatalities per country per year**. 
+
+```python
+# calculate number of years of data collection for each country
+fatalities['years'] = current_year - fatalities['Start Year']
+# use this to get count per year
+fatalities['count_per_year'] = fatalities['fatalities'] / fatalities['years']
+# Clean up a couple fields
+fatalities['start_year'] = fatalities['Start Year']  # Change 'Start Year' to 'start_year'
+fatalities.drop(columns=['Country', 'Start Year'], inplace=True)  # Drop 'Country' column
+# sort by count per year. Is is this same order as by total? 
+# Sorting the DataFrame by 'count_per_year' in descending order
+fatalities = fatalities.sort_values(by='count_per_year', ascending=False)
+# Selecting the top 15 rows
+top_30_fatalities = fatalities.nlargest(30, 'count_per_year')
+top_30_fatalities = top_30_fatalities.reset_index(drop=True)
+top_30_fatalities
+```
+
+Here are the top 30:
 
 ![image](https://github.com/andrews-j/CivilianAnalysis_Africa/assets/26927475/b1d41b79-2e69-4451-aa9f-9745807226a4)
 
@@ -40,7 +59,7 @@ Some takeaways/thoughts on this chart:
 - Is it a coincience that Nigeria and DRC were both quite peaceful for the same ~4 years in the mid 2000s?
 - Iraq has generally stabilized
 - Absolutely amazing how consistent the rate of civilian death is in Mexico.
-- At the risk of getting into politics-- ACLED goes through great pains to not include the deaths of combatants in their dataset. The point of the dataset is to estimate violence against civilians, not wartime casualties. However there is one country where they consider every death a civilian fatality. Even Hamas [admitted](https://www.reuters.com/world/middle-east/israels-six-week-drive-hit-hamas-rafah-scale-back-war-2024-02-19/) that they had lost 6000 fighters, as of mid February. It's funny, because the organization is well [aware](https://acleddata.com/knowledge-base/indirect-killing-of-civilians/) of the need to grapple with this issue. 
+- At the risk of getting into politics-- ACLED goes through great pains to not include the deaths of combatants in their dataset. The point of the dataset is to estimate violence against civilians, not wartime casualties. However there is one territory where they consider every death a civilian fatality. Even Hamas [admitted](https://www.reuters.com/world/middle-east/israels-six-week-drive-hit-hamas-rafah-scale-back-war-2024-02-19/) that they had lost 6000 fighters, as of mid February. It's funny, because ACLED otherwise takes them at their word regarding casualty numbers. Plus, the organization is well [aware](https://acleddata.com/knowledge-base/indirect-killing-of-civilians/) of the need to grapple with this issue. 
 - The Darfur Genocide took place in Sudan from 2003-2005. It appears as though civilians were killed at roughly the same rate in Nigeria between 2014 and 2016?
 
 Then I also made a function to pull out and plot the steepest (deadliest) one year period for each country. A few examples
@@ -62,7 +81,7 @@ While this plot does look at fatalities by region over time:
 
 ![fatalities_region_line](https://github.com/andrews-j/CivilianAnalysis_Africa/assets/26927475/85c5c126-1e3a-486b-a2bd-a008cdd56269)
 
-They look quite different!! And what is going on in Middle Africa and East Africa in the late 90s?
+They look quite different! And what is going on in Middle Africa and East Africa in the late 90s?
 
 To start with we can compare incident count with fatalities, by region:
 
