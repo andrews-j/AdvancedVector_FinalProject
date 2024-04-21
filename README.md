@@ -1,14 +1,16 @@
 # Analyzing Trends of Violence Against Civilians in Africa
 Final project work for IDCE-296 Advanced Vector GIS. Clark University Spring 2024.
 
-#### Dataset
+# Introduction
+
+#### The Dataset
 This project is an exploration of the civilian fatalities [dataset](https://acleddata.com/curated-data-files/#regional
 ) maintained by the Armed Conflict Location & Event Data Project (ACLED). [ACLED](https://acleddata.com/) is a "non-profit, non-governmental organization" and the "leading source of real-time data on political violence and protest activity around the world." Theirs is widely considered the most comprehensive dataset on global conflict, and is regularly cited by major news outlets such as the New York Times. The complete dataset on global civilian fatalities goes back to 1997 for some countries, and contains, as of March 2024, when we downloaded it, information on more than 327,000 incidents all over the world.  
 
-#### Objective
+#### Research Objective
 The goal with this project is to analyze how hotspots of violence against civilians have shifted on the African continent over time, and explore if/how the nature of anti-civilian violence has changed. This will be accomplished through data analysis and visualization in the form of graphs and hot spot mapping.
 
-#### Preliminary Data Exploratoin
+# Preliminary Data Exploration
 To begin with we'll do some exploration of the entire dataset, which includes every country in the world. We'll do this with Python, mostly using pandas and geopandas. See FatalitiesAnalysis.ipynb. The ACLED dataset is updated continuously, and the dataset used here was downloaded on March 22, 2024.
 
 After aggregating total fatalities by country into a new dataframe, we will add a "start_year" field, taken from this handy [chart](https://acleddata.com/acleddatanew/wp-content/uploads/dlm_uploads/2019/01/ACLED_Country-and-Time-Period-coverage_updatedFeb2022.pdf), which allows us to also calculate a 'years' field, and a 'count_per_year' field, which represents the **average number of civilian fatalities per country per year**. 
@@ -65,7 +67,7 @@ A few examples:
 
 ![image](https://github.com/andrews-j/CivilianAnalysis_Africa/assets/26927475/3e113125-b9df-44e1-bfe4-804ddbb4575d)
 
-## Bringing the data into ArcGIS Pro to analyze trends in Africa
+# Africa by Region
 
 From here on we will focus soley on Africa, analyzing spatial and temporal trends by country and region. 
 
@@ -104,7 +106,7 @@ I was surprised to see that even given the recent spike in West Africa, Eastern 
 
 ![image](https://github.com/andrews-j/CivilianAnalysis_Africa/assets/26927475/52d11b9f-0d26-4639-b8c4-613e6bac9af8)
 
-## Digging in to one Region: West Africa
+# Digging in to one Region: West Africa
 
 There are a lot of different things that could be done with this data, depending on what question(s) you are trying to answer. West Africa is a region that I have some familiarity with, so we will take a closer look at the data for this region.
 To do this we will first need to divide the allAfrica data by region:
@@ -137,13 +139,13 @@ It takes less than a minute of internet searching to find information that sugge
 **Example 2: 1999 Freetown Massacre, at least 3,500 civilian fatalities.**
 
 These aren't obscure events, or footnotes. They are central moments in two major West African civil wars. And they are individual examples of what must be dozens or hundreds of incidents that are not in this dataset. Between those two civil wars the dataset is probably missing close to 100,000 civilian fatalities. And this is just an area I am vaguely familiar with. How many other areas are missing data from major conflicts?
-All of which reinforces the fact that this is a very ambitious dataset, and it is unfortuntately very incomplete. There are regions of the world, as well as time periods in which it is very difficult to get accurate or complete information. 
+All of which reinforces the fact that ACLED has a very ambitious mission, and despite the best of efforts the data will always be incomplete. Is it too incomplete to be useful? This may actually be the case for certain time periods in West Africa. There are regions of the world, as well as time periods in which it is very difficult to get accurate or complete information. 
 
-However, the vastly increased number of reported incidents per year suggests that the dataset is getting better with time. 
+However, the vastly increased number of reported incidents per year suggests that the dataset is getting better with time, and it is still almost certainly the best dataset on offer. 
 
-### Minor Headline
+## Incidents VS Fatalities
 
-One thing I am curious about, at this stage, is the percentage of incidents in the dataset with 0 fatalities. The above example, and that of the Angolan Civil War would seem to suggest that earlier in the dataset only major casualty events are getting reported.
+One thing I am curious about, at this stage, is the percentage of incidents in the dataset with 0 fatalities. The example of the Angolan Civil War, discussed in Section 2 would seem to suggest that earlier in the dataset only major casualty events are getting reported.
 So we can calculate the percentage of incidents per year with 0 fatalities. I found this easier to do in Python:
 
 ```python
@@ -162,7 +164,7 @@ And we can plot it with a Pearson's coefficient.
 
 A correlation of -0.70 suggest that either there is a higher threshold over time for what comprises/gets reported an incident, or incidents are becoming more more likely, on average, to lead to a civilian fatality. 
 
-### Aggregating Data with Collect Events
+## Aggregating Data with Collect Events
 
 Even confining our analysis to West Africa, we still have 26,000 incident points to analyze.
 One way to go about visualizing all this data is with 'Collect Events', which will aggregate events by location
@@ -177,6 +179,28 @@ However, this probably leaves the viewer with more questions than answers regard
 
 "Locations are coded to named populated places, geostrategic locations, natural locations, or neighborhoods of larger cities. Geo-coordinates with four decimals are provided to assist in identifying and mapping named locations to a central point (i.e. a centroid coordinate) within that location. Geo-coordinates do not reflect a more precise location, like a block or street corner, within the named location."
 
-### Aggregating Data by Region
+## Aggregating Data by Administrative region
 
-Perhaps a more effective way to represent the 
+Perhaps a more effective way to represent this data is by aggregating at subnational administrative units, rather than single locations. 
+
+We can pull a West Africa [Administrative Boundaries Level 1](https://data.humdata.org/dataset/west-and-central-africa-administrative-boundaries-levels) from [Humanitarian Data Exchange](https://data.humdata.org/). 
+The ACLED dataset already has an 'admin1' field, which means we can simply aggregate this data, and then join it to the admin1 boundaries shapefile. 
+
+The one tricky thing here is that there are some repeat names of admin1 zones across West Africa, so the aggregation and join must be done by both the admin1 and country field.
+It could also have been accomplished with a spatial join.
+For more details on how I did this see WestAfrica.ipynb, but here is the crux of it:
+
+```python
+fatalities_admin1 = WA.groupby(['country', 'admin1'])['fatalities'].sum().reset_index()
+admin1_merged = WA_admin1.merge(fatalities_admin1, on=['country','admin1'], how='left')
+incidents_admin1 = WA.groupby(['country', 'admin1']).size().reset_index(name='incident_count')# Print the summary
+admin1_merged = admin1_merged.merge(incidents_admin1, on=['country','admin1'], how='left')
+```
+
+The result is a shapefile of admin1 boundries across West Africa with fields for total incidents and total fatalities in that region for the whole timeframe of the dataset. 
+
+This data is a great use case for a bivariate color symbology, allowing us to quickly understand the ratio of fatalities to incidents by administrative region.
+
+![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/7beaa386-91a5-49ad-9849-73eb5b780df0)
+
+Unsurpisingly Northern Nigeria has the highest concentration of zones with both high incident numbers and high fatalities, and the Sahel has clusters of high incident activity too.
