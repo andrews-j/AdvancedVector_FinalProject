@@ -111,7 +111,7 @@ I was surprised to see that even given the recent spike in West Africa, Eastern 
 There are a lot of different things that could be done with this data, depending on what question(s) you are trying to answer. West Africa is a region that I have some familiarity with, so we will take a closer look at the data for this region.
 To do this we will first need to divide the allAfrica data by region:
 
-![civFatalitiesCountry_WestAfrica](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/cc94ad5a-7937-4f99-8b86-9c865a390822)
+![Screenshot 2024-04-18 235940](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/ad717c81-765a-4363-9c02-080e41145d51)
 
 And plot fatalities per year by country. 
 
@@ -162,7 +162,7 @@ yearly_percent_0
 And we can plot it with a Pearson's coefficient.
 ![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/8e16a8c4-997a-4133-9b31-25d4ccfbd5e8)
 
-A correlation of -0.70 suggest that either there is a higher threshold over time for what comprises/gets reported an incident, or incidents are gettin more deadly. 
+A correlation of -0.70 suggest that either there is a higher threshold over time for what comprises/gets reported an incident, or incidents are becoming more more likely, on average, to lead to a civilian fatality. 
 
 ### Aggregating Data with Collect Events
 
