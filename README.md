@@ -208,5 +208,3 @@ Unsurpisingly Northern Nigeria has the highest concentration of zones with both 
 ![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/336b5ab7-b058-4cf4-84b7-909ecf1145a3)
 
 This data can also be viewed as a [web app](https://clarku.maps.arcgis.com/apps/instant/charts/index.html?appid=1158745ed81d46a19df9ca2a2658ec2d)
-
-https://clarku.maps.arcgis.com/apps/instant/charts/index.html?appid=1158745ed81d46a19df9ca2a2658ec2d
