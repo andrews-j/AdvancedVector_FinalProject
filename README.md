@@ -203,4 +203,8 @@ This data is a great use case for a bivariate color symbology, allowing us to qu
 
 ![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/7beaa386-91a5-49ad-9849-73eb5b780df0)
 
-Unsurpisingly Northern Nigeria has the highest concentration of zones with both high incident numbers and high fatalities, and the Sahel has clusters of high incident activity too.
+Unsurpisingly Northern Nigeria has the highest concentration of zones with both high incident numbers and high fatalities, and the Sahel has clusters of high incident activity too. A scatter plot of this data tells us basically the same thing:
+
+![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/336b5ab7-b058-4cf4-84b7-909ecf1145a3)
+
+
