@@ -3,9 +3,7 @@ Final project work for IDCE-296 Advanced Vector GIS. Clark University Spring 202
 
 #### Dataset
 This project is an exploration of the civilian fatalities [dataset](https://acleddata.com/curated-data-files/#regional
-) maintained by the Armed Conflict Location & Event Data Project (ACLED)
-. 
-[ACLED](https://acleddata.com/) is a "non-profit, non-governmental organization" and the "leading source of real-time data on political violence and protest activity around the world." Theirs is widely considered the most comprehensive dataset on global conflict, and is regularly cited by major news outlets such as the New York Times. 
+) maintained by the Armed Conflict Location & Event Data Project (ACLED). [ACLED](https://acleddata.com/) is a "non-profit, non-governmental organization" and the "leading source of real-time data on political violence and protest activity around the world." Theirs is widely considered the most comprehensive dataset on global conflict, and is regularly cited by major news outlets such as the New York Times. The complete dataset on global civilian fatalities goes back to 1997 for some countries, and contains, as of March 2024, when we downloaded it, information on more than 327,000 incidents all over the world.  
 
 #### Objective
 The goal with this project is to analyze how hotspots of violence against civilians have shifted on the African continent over time, and explore if/how the nature of anti-civilian violence has changed. This will be accomplished through data analysis and visualization in the form of graphs and hot spot mapping.
