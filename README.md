@@ -4,7 +4,7 @@ Final project work for IDCE-296 Advanced Vector GIS. Clark University Spring 202
 # Introduction
 
 #### The Dataset
-This project is an exploration of the civilian fatalities [dataset](https://acleddata.com/curated-data-files/#regional
+This project is an exploration of the anti-civilian violence [dataset](https://acleddata.com/curated-data-files/#regional
 ) maintained by the Armed Conflict Location & Event Data Project (ACLED). [ACLED](https://acleddata.com/) is a "non-profit, non-governmental organization" and the "leading source of real-time data on political violence and protest activity around the world." Theirs is widely considered the most comprehensive dataset on global conflict, and is regularly cited by major news outlets such as the New York Times. The complete dataset on global civilian fatalities goes back to 1997 for some countries, and contains, as of March 2024, when we downloaded it, information on more than 327,000 incidents all over the world.  
 
 #### Research Objective
@@ -73,12 +73,14 @@ From here on we will focus soley on Africa, analyzing spatial and temporal trend
 
 To start with, we can look at **incidents** (not fatalities) by region:
 
-![fatalities_year_region](https://github.com/andrews-j/CivilianAnalysis_Africa/assets/26927475/881e30fd-6f60-43e8-86bc-8a2b1de8492e)
+![Incidents_year_region](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/a083f9b8-6332-4ae7-8c2e-b8faa1ec95c2)
+
 
 The number of incidents of violence against civilians in this dataset has absolutely exploded in the last decade or so. 
 While this plot looks at **fatalities** by region over time:
 
-![fatalities_region_line](https://github.com/andrews-j/CivilianAnalysis_Africa/assets/26927475/85c5c126-1e3a-486b-a2bd-a008cdd56269)
+![fatalities_region_line](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/28867629-ddca-4f97-a4eb-4da20d53f45f)
+
 
 They look quite different! And what is going on in Middle Africa and East Africa in the late 90s?
 
@@ -111,7 +113,7 @@ I was surprised to see that even given the recent spike in West Africa, Eastern 
 There are a lot of different things that could be done with this data, depending on what question(s) you are trying to answer. West Africa is a region that I have some familiarity with, so we will take a closer look at the data for this region.
 To do this we will first need to divide the allAfrica data by region:
 
-![Screenshot 2024-04-18 235940](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/ad717c81-765a-4363-9c02-080e41145d51)
+![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/37d866d9-2b24-4650-93af-645fd2291260)
 
 And plot fatalities per year by country. 
 
