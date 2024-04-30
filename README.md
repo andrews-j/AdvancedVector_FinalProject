@@ -75,7 +75,7 @@ My idea is to take the steepest one year period for each country, and use that t
 
 # Narrowing the Focus to Africa
 
-From here on we will focus soley on Africa, analyzing spatial and temporal trends by country and region. 
+From here on we will focus solely on Africa, analyzing spatial and temporal trends by country and region. 
 
 ### Incidents VS Fatalities
 
