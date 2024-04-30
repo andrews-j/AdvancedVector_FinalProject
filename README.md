@@ -107,9 +107,9 @@ This seems like a strong possibility. We may be able to answer this question by 
 
 We can also look at a comparison of incident count vs fatalities, by region:
 
-![incidents_vs_fatalities_byRegion](https://github.com/andrews-j/CivilianAnalysis_Africa/assets/26927475/5377da5f-5571-4b70-92ad-5fddec0c0fc9)
+![newplot(3)](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/8d550a6c-f938-4620-bff8-94d9cae48385)
 
-Every dot represents the number of fatalities vs incidents in a region for one year. Any line with a positive slope means that each incident in that region killed, on average, more than one person. Only in North Africa are there more incidents than fatalities. There are some significant outliers in Middle Africa in the top left quadrent of the graph. This we will have to investigate.
+Every dot represents the number of fatalities vs incidents in a region for one year. The dotted line is the 1:1 line. Any point above this line represents a year during which every incident resulted in, on average > 1 fatality.  There are some significant outliers in Middle Africa in the top left quadrent of the graph. This we will have to investigate.
 
 Going back to Python we can create a graph showing cumulative fatalities by year for each region.
 
