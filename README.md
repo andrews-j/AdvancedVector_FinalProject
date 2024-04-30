@@ -1,20 +1,23 @@
 # Analyzing Trends of Violence Against Civilians in Africa
-Final project work for IDCE-296 Advanced Vector GIS. Clark University Spring 2024.
+Final project work for IDCE-296, Advanced Vector GIS. 
+
+Clark University, Spring 2024.
 
 # Introduction
 
 #### The Dataset
 This project is an exploration of the anti-civilian violence [dataset](https://acleddata.com/curated-data-files/#regional
-) maintained by the Armed Conflict Location & Event Data Project (ACLED). [ACLED](https://acleddata.com/) is a "non-profit, non-governmental organization" and the "leading source of real-time data on political violence and protest activity around the world." Theirs is widely considered the most comprehensive dataset on global conflict, and is regularly cited by major news outlets such as the New York Times, such as in this recent [article](https://www.nytimes.com/interactive/2024/04/20/world/asia/myanmar-civil-war.html#top_questions) about Myanmar. The complete dataset on global anti-civilian violence goes back to 1997 for some countries, and contains, as of March 2024 when we downloaded it, information on more than 327,000 incidents all over the world.  
+) maintained by the Armed Conflict Location & Event Data Project (ACLED). [ACLED](https://acleddata.com/) is a "non-profit, non-governmental organization" and the "leading source of real-time data on political violence and protest activity around the world." Theirs is widely considered the most comprehensive dataset on global conflict, and is regularly cited by major news outlets, including the New York Times, as in this recent [article](https://www.nytimes.com/interactive/2024/04/20/world/asia/myanmar-civil-war.html#top_questions) about the civil war in Myanmar. The ACLED database includes datasets on "Battles," "Explosions/Remote violence," "Protests," "Riots," "Strategic developements," and "Violence Against Civilians." This analysis uses the Violence against civilians dataset for the continent of Africa, though we do include some analysis of the "Battles" dataset as well.
+
+The complete dataset on anti-civilian violence contains, as of March 2024 when we downloaded it, information on more than 327,000 incidents all over the world. The subset for Africa includes 104,000 incidents, going back to 1997.
 
 #### Research Objective
-The goal with this project is to analyze how hotspots of violence against civilians have shifted on the African continent over time, and explore if/how the nature of anti-civilian violence has changed. This will be accomplished through data analysis and visualization in the form of graphs and hot spot mapping.
+The goal with this project is to analyze how hotspots of violence against civilians have shifted on the African continent over time, and explore if/how the nature of anti-civilian violence has changed. This will be accomplished through data analysis and visualization in the form of graphs and hot spot mapping. After continent wide analysis and visualization, will zoom in on the region of West Africa in order to have a more granular, subnational understanding of the data. 
 
 # Preliminary Data Exploration
-To begin with we'll do some exploration of the entire dataset, which includes every country in the world. We'll do this with Python, mostly using pandas and geopandas. See FatalitiesAnalysis.ipynb. The ACLED dataset is updated continuously, and the dataset used here was downloaded on March 22, 2024.
+To begin with we'll do some exploration of the entire dataset, which includes every country in the world. We'll do this with Python, mostly using pandas and geopandas. See **FatalitiesAnalysis.ipynb**. The ACLED dataset is updated continuously, and the dataset used here was downloaded on March 22, 2024.
 
-After aggregating total fatalities by country into a new table, we will add a "start_year" field, taken from this handy [chart](https://acleddata.com/acleddatanew/wp-content/uploads/dlm_uploads/2019/01/ACLED_Country-and-Time-Period-coverage_updatedFeb2022.pdf), which allows us to also calculate a 'years' field, and a 'count_per_year' field, which represents the **average number of civilian fatalities per country per year**. 
-
+After aggregating total fatalities by country into a new table, we will add a "start_year" field, taken from this handy [chart](https://acleddata.com/acleddatanew/wp-content/uploads/dlm_uploads/2019/01/ACLED_Country-and-Time-Period-coverage_updatedFeb2022.pdf), (See **getStartDate.ipynb**.) which allows us to also calculate a 'years' field, and a 'count_per_year' field, which represents the **average number of civilian fatalities per country per year**. 
 ```python
 # calculate number of years of data collection for each country
 fatalities['years'] = current_year - fatalities['Start Year']
@@ -35,7 +38,7 @@ Here are the top 30, ranked by average number of civilian fatalities per year:
 
 ![image](https://github.com/andrews-j/CivilianAnalysis_Africa/assets/26927475/b1d41b79-2e69-4451-aa9f-9745807226a4)
 
-I suspect some readers may find this chart surprising. Are people aware of the level of violence in Mexico, or Brazil?
+I suspect some readers may find this chart surprising. Are people aware of the  consistent level of violence in Mexico, or Brazil?
 
 The lack of parity between countries in how long data has been collected presents an issue when analyzing this data.
 Every country in mainland Africa goes back to 1997, Latin America starts in 2018, the rest of the world is a number of different dates.
@@ -67,6 +70,9 @@ A few examples:
 
 ![image](https://github.com/andrews-j/CivilianAnalysis_Africa/assets/26927475/3e113125-b9df-44e1-bfe4-804ddbb4575d)
 
+My idea is to take the steepest one year period for each country, and use that time frame to do a query on the APIs of various major news outlets. This might allow us to see, controlled for fatalities, how much media attention is given to each conflict.
+
+
 # Narrowing the Focus to Africa
 
 From here on we will focus soley on Africa, analyzing spatial and temporal trends by country and region. 
@@ -87,13 +93,17 @@ They look quite different! And what is going on in Middle Africa and East Africa
 
 Based on those two graphs we can make a couple of general statements about the data:
 - In the late 90s Middle Africa and Eastern Africa had relatively few incidents but very high numbers of fatalities
-- West Africa has seen a sharp rise in number of fatalities in the last decade, though without an increase in the ratio of fatalities/per incident. 
+- West Africa has seen a sharp rise in number of fatalities in the last decade, though without a significant increase in the ratio of fatalities/per incident. 
 
 These inferences are confirmed by calculating and plotting the average number of fatalities per incident by year, split by region.
 
 ![FatalitiesPer_ScatterPlot](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/3a2b2832-c831-4a93-afb9-6a6750880bd5)
 
-The average number of fatalities per incident has trended down in pretty much every region, especially Middle Africa. This raises some questions about the data: Can this trend be explained largely by increased granularity of reporting? Could it be the case that in the past only significant incidents made it into the dataset? This seems quite likely. We may be able to answer this question by digging further.
+The average number of fatalities per incident has trended down in pretty much every region, especially Middle Africa. This raises some questions about the data: 
+
+Can this trend be explained largely by increased granularity of reporting? Is it the case that in the past only significant incidents made it into the dataset? 
+
+This seems like a strong possibility. We may be able to answer this question by digging further.
 
 We can also look at a comparison of incident count vs fatalities, by region:
 
