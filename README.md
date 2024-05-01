@@ -1,4 +1,4 @@
-# Anti-Civilian Violence in Africa: A statistical Analysis
+# Anti-Civilian Violence in Africa: A Statistical Analysis
 Jason Andrews | Clark University | Spring 2024 | IDCE-296, Advanced Vector GIS. 
 
 # Introduction
