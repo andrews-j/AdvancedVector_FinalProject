@@ -111,7 +111,7 @@ We can also look at a comparison of incident count vs fatalities, by region:
 
 Each dot represents the number of fatalities vs incidents in a region for one year. The dashed line is the 1:1 line. Any point above this line represents a year during which every incident resulted in, on average > 1 fatality in that region.  There are some significant outliers in Middle Africa in the top left quadrent of the graph. This we will have to investigate.
 
-A quick manual examination of the data suggests that the outliers on that plot, years with few incidents butmore than 5k fatalities are explained by several distinct periods of conflict captured by the dataset. 
+A quick manual examination of the data suggests that the outliers in the upper left quadrant of this plot, years with few incidents but more than 5k fatalities, are explained by several distinct periods of conflict captured by the dataset. 
 
 The Middle Africa points contain data from the end of the Angolan Civil War, specifically the seige of Kuito, which lasted 18 months between 1998 and 1999. There are 10 events listed with 1000 casualties each, which is the maximum number for an individual incident in the dataset. This raises questions about how events are binned, how estimate are made, and how his affects the accuracy of this data at a statistical level. 
 
@@ -141,7 +141,7 @@ Space time cubes have the advantage of condensing a large amount of information 
 
 ### Continent Scale Data Aggregation: Hot Spot Analysis
 
-**Emerging Hot Spot Analysis** is a tool in ArcGIS Pro that provides a 2-D representation of a space time cube dataset, with unique symbology for several different types of hot spot. 
+**Emerging Hot Spot Analysis** is a tool in ArcGIS Pro that provides a 2-D representation of a space time cube dataset, with unique symbology for several different types of hot and cold spot. 
 
 Intially I used the same size blocks as the above space time cube. However, in two dimensions, this does not offer fine enough spatial resolution:
 
@@ -151,11 +151,11 @@ I settled on cubes of 25 miles x 25 miles for hot spot vizualization, which is 1
 
 ![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/b9511a56-3292-4bff-91d5-ed769d04cc01)
 
-This is still limited by only aggregating base on number of incidents, not fatalities, and as earlier plots show, in this data set, incident count pretty much has only gone up, which may explain why there are no "former hot spot"s represented here. 
+These Emerging Hot Spot Analysis visualizations are limited, like the space time cubes, by only aggregating the number of incidents, not fatalities. Additionally, in this data set incident count pretty much has only gone up, which may explain why there are no "former hot spots" represented here. 
 
 # Digging in to one Region: West Africa
 
-There are a lot of different things that could be done with this data, depending on what question(s) you are trying to answer. West Africa is a region that I have some familiarity with, so we will take a closer look at the data for this region.
+There are a lot of different analyses that could be done with this data, depending on what question(s) one is trying to answer. West Africa is a region that I have some familiarity with, so we will take a closer look at the data for this region.
 To do this we will first need to divide the allAfrica data by region:
 
 ![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/37d866d9-2b24-4650-93af-645fd2291260)
@@ -184,11 +184,11 @@ It takes less than a minute of internet searching to find information that sugge
 ![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/536b9108-d0cf-4f60-b07c-ad095aeff623)
 **Example 2: 1999 Freetown Massacre, at least 3,500 civilian fatalities.**
 
-These aren't obscure events, or footnotes. They are central moments in two major West African civil wars. And they are individual examples of what must be dozens or hundreds of incidents that are not in this dataset. Between those two civil wars alone the dataset is probably missing close to 100,000 civilian fatalities. And this is just an area I am vaguely familiar with. How many other areas are missing data from major conflicts? The Ivoirian Civil War seems absent as well.
+These aren't obscure events, or footnotes. They are central moments in two major West African civil wars. And they are individual examples of what must be dozens or hundreds of incidents that are not in this dataset. Between these two wars alone the dataset is probably missing close to 100,000 civilian fatalities. And this is just one area I am vaguely familiar with. How many other areas are missing data from major conflicts? The Ivoirian Civil War seems absent as well.
 
-All of which reinforces the fact that ACLED has a very ambitious mission, and despite the best of efforts the data will always be incomplete. Is it too incomplete to be useful? I contend that this is in fact the case for certain time periods in West Africa. There are regions of the world, as well as time periods in which it is very difficult to get accurate or complete information. 
+All of which reinforces the fact that ACLED has a very ambitious mission, and despite the best of efforts, this data will always be incomplete. Is it too incomplete to be useful? I contend that this is in fact the case for certain time periods in West Africa. There certain time periods in certain regions of the world, during which it is very difficult to get accurate or complete information. 
 
-However, the vastly increased number of reported incidents per year would seem to suggest that the dataset is getting better with time, probably due to way mobile smart phones have permeated society, allowing better connectivity between communities and journalists or other forms of record keeping. It is also worth remarking that for all its flaws ACLED almost certainly remains the best dataset on world conflict on offer. 
+However, the vastly increased number of reported incidents per year would seem to suggest that the dataset is getting better with time, probably due to way mobile smart phones have permeated society, allowing better connectivity between communities, citizens, and journalists or other record keepers. It is also worth emphasizing that for all its flaws ACLED almost certainly remains the best dataset on world conflict on offer. 
 
 ## Incidents VS Fatalities
 
@@ -209,7 +209,7 @@ yearly_percent_0
 And we can plot it with a Pearson's coefficient.
 ![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/8e16a8c4-997a-4133-9b31-25d4ccfbd5e8)
 
-A correlation of -0.70 means that there is in fact a statistically significant **decrease** in the percentage of events **without a fatality** over the timeframe of the study. There would seem to be two likely possible explainations: Either there is a higher threshold over time for what comprises/gets reported as an incident, or civilian targeting incidents are simply becoming more deadly on average, perhaps due to enhanced access to weaponry. 
+A correlation of -0.70 means that there is in fact a statistically significant **decrease** in the percentage of events **without a fatality** over the timeframe of the study. There would seem to be two likely possible explainations: Either there is a higher threshold over time for what comprises/gets reported as an incident, or civilian targeting incidents are simply becoming more deadly on average, perhaps due to enhanced access to more lethal weaponry by governments, militias, or terrorist groups in the region. 
 
 ## Aggregating Data with Collect Events
 
@@ -218,7 +218,7 @@ One way to go about visualizing all this data is with 'Collect Events', which wi
 
 ![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/c5d16cc0-87b6-4bb4-aedb-ad40ce0f5019)
 
-And allows us to create a map like this:
+Which allows us to create a map like this:
 
 ![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/977fc35e-1faa-4698-a148-0a8da6bc5746)
 
@@ -228,14 +228,14 @@ However, this probably leaves the viewer with more questions than answers regard
 
 ## Aggregating Data by Administrative region
 
-Perhaps a more effective way to represent this data is by aggregating at subnational administrative units, rather than single locations. This will allows to see regional trends within individual countries.
+Perhaps a more effective way to represent this data is by aggregating at subnational administrative units, rather than individual 'location'. This elucidates regional trends within individual countries.
 
 We can pull a West Africa [Administrative Boundaries Level 1](https://data.humdata.org/dataset/west-and-central-africa-administrative-boundaries-levels) from [Humanitarian Data Exchange](https://data.humdata.org/). 
 The ACLED dataset already has an 'admin1' field, which means we can simply aggregate this data, and then join it to the admin1 boundaries shapefile. 
 
 The one tricky thing here is that there are some repeat names of admin1 zones across West Africa, so the aggregation and join must be done by both the admin1 and country field.
-This could also have been accomplished with a spatial join.
-For more details on how I did this see WestAfrica.ipynb, but here is the crux of it:
+While the latter could have been accomplished with a spatial join, it's not clear to me how I might have done the aggregation in ArcGIS Pro.
+For details on how I did this see WestAfrica.ipynb, but here is the crux of it:
 
 ```python
 fatalities_admin1 = WA.groupby(['country', 'admin1'])['fatalities'].sum().reset_index()
@@ -244,9 +244,9 @@ incidents_admin1 = WA.groupby(['country', 'admin1']).size().reset_index(name='in
 admin1_merged = admin1_merged.merge(incidents_admin1, on=['country','admin1'], how='left')
 ```
 
-The result is a shapefile of admin1 boundries across West Africa with fields for total incidents and total fatalities in that region for the whole timeframe of the dataset. 
+The result is a shapefile of admin1 boundries across West Africa with fields for **total incidents** and **total fatalities** in that region for the whole timeframe of the dataset. 
 
-This data is a great use case for a bivariate color symbology, allowing us to quickly understand the ratio of fatalities to incidents by administrative region.
+This data is a great use case for a bivariate color symbology, allowing us to quickly understand the ratio of fatalities to incidents by administrative region, and therefore where civilians are more likely to be faced with lethal force. 
 
 ![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/7beaa386-91a5-49ad-9849-73eb5b780df0)
 
@@ -255,3 +255,38 @@ Unsurpisingly, Northern Nigeria has the highest concentration of zones with both
 ![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/336b5ab7-b058-4cf4-84b7-909ecf1145a3)
 
 This data can also be viewed as an interactive [web app](https://clarku.maps.arcgis.com/apps/instant/charts/index.html?appid=1158745ed81d46a19df9ca2a2658ec2d)
+
+## Civilian Fatalities vs Battle Fatalities
+
+ACLED also maintains a [dataset](https://acleddata.com/data-export-tool/) on the occurance of 'battles,' which I referenced and used in an interactive space time cube [map](https://www.arcgis.com/apps/dashboards/7c5297d514a84e52bb6968c1ee254407). Battles are [defined](https://acleddata.com/resources/quick-guide-to-acled-data/) by ACLED simply as "Violent interactions between two organized armed groups." The key here being that _both_ sides are armed, though this could still be a street fight between gangs. As always I have questions about the completeness/validity of this data, but we will work with what we have.
+
+The 'battles' data allows for an analysis of what percent of violent fatalities by region occur in battle, vs anti-civilian violence. 
+
+To do this I created a ratio, similar in statistical method to NDVI, but with anti-civilian violence fatalities, vs fatalities in battle.
+
+![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/5adc2600-ae2b-43ef-b903-422ed1def5fc)
+
+This is another instance where things were much easier in Python, and it did not feel like good use of time to troubleshoot ArcGIS Pro.
+
+![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/20e4bcd9-dc67-4bbd-a63b-2191d6d67d15)
+
+
+The resulting map represents the ratio as bimodal data. 
+
+
+
+Green = more civilian fatalities than combat
+Blue = more battle fatalities than civilian
+
+![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/d42464a6-2cf5-4d5d-b559-6c52a27db0be)
+
+I'm agnostic as to how useful this really is, or if this is an appropriate use of ratios. However, the map does illuminate real trends:
+- There is more green in peaceful countries such as Senegal, Guinea, and Ghana.
+- The borders of Burkina Faso can almost be distinguished by the collection of blue polygons. 
+
+However, there are drawbacks:
+- The magnitude of violence is totally lost here, and an area with lots of battle and anti-civilian violence fataliies is just tan. 
+
+IDEAS
+
+Ratio of incidents to fatalities by actor
