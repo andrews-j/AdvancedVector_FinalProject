@@ -1,7 +1,5 @@
-# Analyzing Trends of Violence Against Civilians in Africa
-Final project work for IDCE-296, Advanced Vector GIS. 
-
-Clark University, Spring 2024.
+# Anti-Civilian Violence in Africa: A statistical Analysis
+Jason Andrews | Clark University | Spring 2024 | IDCE-296, Advanced Vector GIS. 
 
 # Introduction
 
@@ -258,9 +256,10 @@ This data can also be viewed as an interactive [web app](https://clarku.maps.arc
 
 ## Civilian Fatalities vs Battle Fatalities
 
-ACLED also maintains a [dataset](https://acleddata.com/data-export-tool/) on the occurance of 'battles,' which I referenced and used in an interactive space time cube [map](https://www.arcgis.com/apps/dashboards/7c5297d514a84e52bb6968c1ee254407). Battles are [defined](https://acleddata.com/resources/quick-guide-to-acled-data/) by ACLED simply as "Violent interactions between two organized armed groups." The key here being that _both_ sides are armed, though this could still be a street fight between gangs. As always I have questions about the completeness/validity of this data, but we will work with what we have.
+ACLED also maintains a [dataset](https://acleddata.com/data-export-tool/) on the occurance of 'battles,' which I referenced and used in an interactive space time cube [map](https://www.arcgis.com/apps/dashboards/7c5297d514a84e52bb6968c1ee254407) earlier in this project readme. Battles are [defined](https://acleddata.com/resources/quick-guide-to-acled-data/) by ACLED simply as "Violent interactions between two organized armed groups." The key here being that _both_ sides are armed, though this could still be a street fight between gangs. As always I have questions about the completeness/validity of this data, but we will work with what we have.
 
-The 'battles' data allows for an analysis of what percent of violent fatalities by region occur in battle, vs anti-civilian violence. 
+The 'battles' data allows for an analysis of what percent of fatalities by region occur in battle, vs anti-civilian violence. 
+Theoretically this will show what regions are more embroiled in outright conflict/war, vs where the violence is more one sided. 
 
 To do this I created a ratio, similar in statistical method to NDVI, but with anti-civilian violence fatalities, vs fatalities in battle.
 
@@ -270,10 +269,7 @@ This is another instance where things were much easier in Python, and it did not
 
 ![image](https://github.com/andrews-j/CivilianAnalysis/assets/26927475/20e4bcd9-dc67-4bbd-a63b-2191d6d67d15)
 
-
 The resulting map represents the ratio as bimodal data. 
-
-
 
 Green = more civilian fatalities than combat
 Blue = more battle fatalities than civilian
@@ -285,8 +281,22 @@ I'm agnostic as to how useful this really is, or if this is an appropriate use o
 - The borders of Burkina Faso can almost be distinguished by the collection of blue polygons. 
 
 However, there are drawbacks:
-- The magnitude of violence is totally lost here, and an area with lots of battle and anti-civilian violence fataliies is just tan. 
+- The magnitude of violence is totally lost here, and an area with lots of battle and anti-civilian violence fataliies is just tan.
+- 27 years is a very long timeframe
 
-IDEAS
+# Conclusions and Further Research
+I've used a handful of different approaches to analyze and visualize this data. It has been an exploratory exercise, and my research questions have emerged as I've proceeded, rather than having them fromthe beginning. 
 
-Ratio of incidents to fatalities by actor
+These are some of my observations:
+
+- The best visual for spatial-temporal trends in such a large dataset is probably an interactive space time cube. There's really no better way to represent 27 years of data for the entire continent, comprising > 100,000 points.
+- While it is broadly useful, this is a highly flawed and incomplete dataset. The total lack of data on the Liberian and Sierra Leonian Civil Wars are especially galling, but these are just examples. GIGO.
+- On that point, specialized/contextual knowledge is (as always) crucial to draw insight from this kind of data.
+- There are an infinite number of ways to analyze and represent this data.
+- I encountered several things that were difficult or even impossible to do in Arc GIS Pro that could be accomplished quickly in Python.
+
+## Further Work:
+
+- Continuing to hone in on smaller subsets of the data, both spatially and temporally, would lead to better and more meaningful representations of the data. Particularly, focusing on trends within the last 5-10 years.
+- Different ways to slice the data. It would be interesting to do an analysis of the ratio of anti-civilian incidents to fatalities by **actor** to see which force has the most lethal encounters with civilians.
+- It may also be possible to slice the data by motive, using some kind of keyword in the notes.
