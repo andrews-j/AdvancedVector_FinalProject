@@ -184,7 +184,7 @@ It takes less than a minute of internet searching to find information that sugge
 
 These aren't obscure events, or footnotes. They are central moments in two major West African civil wars. And they are individual examples of what must be dozens or hundreds of incidents that are not in this dataset. Between these two wars alone the dataset is probably missing close to 100,000 civilian fatalities. And this is just one area I am vaguely familiar with. How many other areas are missing data from major conflicts? The Ivoirian Civil War seems absent as well.
 
-All of which reinforces the fact that ACLED has a very ambitious mission, and despite the best of efforts, this data will always be incomplete. Is it too incomplete to be useful? I contend that this is in fact the case for certain time periods in West Africa. There certain time periods in certain regions of the world, during which it is very difficult to get accurate or complete information. 
+All of which reinforces the fact that ACLED has a very ambitious mission, and despite the best of efforts, this data will always be incomplete. Is it too incomplete to be useful? I will contend that this is in fact the case for certain time periods in West Africa, and probably certain time periods in other regions of the world, during which it is very difficult to get accurate or complete information. 
 
 However, the vastly increased number of reported incidents per year would seem to suggest that the dataset is getting better with time, probably due to way mobile smart phones have permeated society, allowing better connectivity between communities, citizens, and journalists or other record keepers. It is also worth emphasizing that for all its flaws ACLED almost certainly remains the best dataset on world conflict on offer. 
 
@@ -285,7 +285,7 @@ However, there are drawbacks:
 - 27 years is a very long timeframe
 
 # Conclusions and Further Research
-I've used a handful of different approaches to analyze and visualize this data. It has been an exploratory exercise, and my research questions have emerged as I've proceeded, rather than having them fromthe beginning. 
+I've used a handful of different approaches to analyze and visualize this data. It has been an exploratory exercise, and my research questions have emerged as I've proceeded, rather than having them from the beginning. 
 
 These are some of my observations:
 
